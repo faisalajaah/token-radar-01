@@ -1,13 +1,14 @@
 # token-radar-01
+
 [![make.fun · token-radar-01](https://make.fun/badge/token-radar-01.svg)](https://make.fun/bounty/token-radar-01?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
 [![rank](https://make.fun/badge/token-radar-01/faisalajaah/token-radar-01/rank.svg)](https://make.fun/bounty/token-radar-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
 [![reward](https://make.fun/badge/token-radar-01/faisalajaah/token-radar-01/reward.svg)](https://make.fun/bounty/token-radar-01?utm_source=github&utm_medium=readme&utm_campaign=token-radar-01)
 
-Description: a token launch radar ranking 200 pre-token DeFi protocols by expected launch value, with per-protocol detail and farm plans.
+Description: a token launch radar ranking 200 pre-token DeFi protocols by expected launch value, with top picks, per-protocol detail and farm plans.
 
 ## What it is
 
-A token launch radar over a sealed DefiLlama snapshot (2026-11-14, 758 protocols, 40 on the watchlist). The board ranks pre-token protocols by expected launch value — FDV implied by TVL, seven-day growth, age and chain count, times a launch probability — and gives every row a seven-step farm plan with costs and times. Protocols whose token already trades are kept apart in a Live-token view, never mixed into the ranking. The dashboard is a static page (no network, no framework) with a board, a detail view per protocol, and search, category, chain and scope filters.
+A token launch radar over a sealed DefiLlama snapshot (2026-11-14, 758 protocols, 40 on the watchlist). The board ranks pre-token protocols by expected launch value — FDV implied by TVL, seven-day growth, age and chain count, times a launch probability — and gives every row a seven-step farm plan with costs and times. What is new in radar-3: the category multiples are calibrated from the snapshot itself (median market-cap / TVL of each group's live-token protocols, times a 2.5x FDV uplift), growth is spike-damped, maturity peaks and decays, and chains pay diminishing returns. Protocols whose token already trades are kept apart in a Live-token view, never mixed into the ranking. The dashboard is a static page (no network, no framework) with top picks, a board, a detail view per protocol, and search, category, chain and scope filters.
 
 ## Run it
 

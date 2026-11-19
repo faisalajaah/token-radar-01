@@ -3,13 +3,119 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Token Radar radar-2: pre-token protocols ranked by expected launch value</title>
+<title>Token Radar — radar-3</title>
 <link rel="stylesheet" href="app.css">
 </head>
 <body>
 <a class="skip" href="#board">Skip to the board</a>
-<main id="board" tabindex="-1" aria-busy="true"></main>
-<noscript><p>Token Radar needs JavaScript: the board is rendered from the snapshot data beside this page.</p></noscript>
+<div class="shell">
+  <header class="top">
+    <div class="brand">
+      <svg class="mark" width="34" height="34" viewBox="0 0 34 34" aria-hidden="true">
+        <circle cx="17" cy="17" r="15" fill="none" stroke="#38bdf8" stroke-width="1.5"/>
+        <circle cx="17" cy="17" r="9" fill="none" stroke="#38bdf8" stroke-width="1" opacity=".6"/>
+        <circle cx="17" cy="17" r="3" fill="#38bdf8"/>
+        <line x1="17" y1="17" x2="28" y2="8" stroke="#fbbf24" stroke-width="1.5"/>
+        <circle cx="25" cy="11" r="2" fill="#fbbf24"/>
+      </svg>
+      <div>
+        <div class="brand-name">TOKEN RADAR</div>
+        <h1>Which pre-token protocol is worth farming?</h1>
+      </div>
+    </div>
+    <div class="top-meta" id="meta"></div>
+  </header>
+
+  <section class="lede">
+    <div>
+      <p><b>radar-3</b> scores every pre-token protocol in a sealed DefiLlama snapshot
+      (14 Nov 2026) by <b>expected launch value</b> — the FDV its TVL implies, times
+      the chance it ever launches. The multiples are <b>calibrated from the snapshot
+      itself</b>: each category's multiple is the median market-cap / TVL of its
+      live-token protocols, times a 2.5x FDV uplift. No name is ever special-cased.</p>
+      <p class="note">A protocol is listed as pre-token because its DefiLlama record
+      carries no token — that is the record, not proof it has none.</p>
+    </div>
+    <div class="facts" id="facts"></div>
+  </section>
+
+  <section aria-labelledby="picks-h">
+    <h2 id="picks-h">Top picks — why each one ranks where it does</h2>
+    <div class="picks" id="picks"></div>
+  </section>
+
+  <section aria-labelledby="board-h">
+    <div class="board-head">
+      <h2 id="board-h">The board</h2>
+      <div class="tabs" role="group" aria-label="Scope">
+        <button type="button" data-scope="all" aria-pressed="true">All 200</button>
+        <button type="button" data-scope="watchlist" aria-pressed="false">Watchlist 40</button>
+        <button type="button" data-scope="early" aria-pressed="false">Early 160</button>
+        <button type="button" data-scope="live" aria-pressed="false">Live tokens</button>
+      </div>
+    </div>
+    <div class="controls">
+      <label class="field">Search<input id="q" type="search" placeholder="Name or slug…" autocomplete="off"></label>
+      <label class="field">Category
+        <select id="cat"><option value="">All categories</option></select>
+      </label>
+      <label class="field">Chain
+        <select id="chain"><option value="">All chains</option></select>
+      </label>
+      <label class="field">Sort by
+        <select id="sort">
+          <option value="expected">Expected value</option>
+          <option value="probability">Launch probability</option>
+          <option value="tvl">TVL</option>
+          <option value="growth">7-day growth</option>
+          <option value="age">Age</option>
+        </select>
+      </label>
+      <span class="count" id="count"></span>
+    </div>
+    <div class="panel"><div class="table-wrap">
+      <table id="board">
+        <thead><tr>
+          <th><button type="button" data-sort="rank">Rank</button></th>
+          <th><button type="button" data-sort="name">Protocol</button></th>
+          <th><button type="button" data-sort="tvl">TVL</button></th>
+          <th><button type="button" data-sort="growth">7d</button></th>
+          <th><button type="button" data-sort="probability">Launch chance</button></th>
+          <th><button type="button" data-sort="expected">Expected value</button></th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty" id="empty" hidden><p>No protocol matches these filters.</p><button class="button" id="reset" type="button">Clear the filters</button></div>
+    </div></div>
+  </section>
+
+  <section class="detail panel" id="detail" hidden></section>
+
+  <section class="model panel" aria-labelledby="model-h">
+    <h2 id="model-h">How radar-3 prices a launch</h2>
+    <p class="formula">expected = TVL × calibrated multiple × growth × maturity × chains × launch probability</p>
+    <div class="model-grid">
+      <div>
+        <h3>Calibrated multiples — from this snapshot's live tokens</h3>
+        <table id="calib"><thead><tr><th>Group</th><th>Multiple</th><th>Live comps</th><th>Median mcap/TVL</th><th>Have a token</th></tr></thead><tbody></tbody></table>
+      </div>
+      <div>
+        <h3>What moves the number</h3>
+        <ul class="moves">
+          <li><b>Growth</b> is spike-damped: a +300% week pays about as much as a +120% one, and a spike over 100% costs 5 points of launch chance as reversion risk.</li>
+          <li><b>Maturity</b> peaks at one year and holds to 900 days, then decays — a protocol that ran four years with no token is worth less than the same one at eighteen months.</li>
+          <li><b>Chains</b> pay diminishing returns: 1 + 0.06 × log₂(chains), capped at 1.20.</li>
+          <li><b>Launch chance</b> starts in the age band (180–900 days scores 0.78) and moves with the group's token base rate, growth and chain count, clamped to 0.12–0.90.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <p>Snapshot 14 Nov 2026 · 758 protocols · watchlist floor $50M · model radar-3 ·
+    implied values are this entry's own claim, never a prediction that a token will launch.</p>
+  </footer>
+</div>
 <script src="../data.js"></script>
 <script src="app.js"></script>
 </body>

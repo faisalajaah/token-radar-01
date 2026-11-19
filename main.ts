@@ -1,13 +1,13 @@
-// token-radar-01 — the entrypoint.
+// token-radar-01 — the entrypoint, radar-3.
 //
-// Reads the sealed DefiLlama snapshot (a file or the directory holding it),
-// scores every pre-token protocol with the radar-2 model in lib/model.ts,
-// and writes the whole hand-in to one output directory:
+// Reads the sealed DefiLlama snapshot, scores every pre-token protocol with the
+// radar-3 model in lib/model.ts, and writes the whole hand-in to one output
+// directory:
 //
-//   board.json     the ranked board, 200 rows, watchlist covered
+//   board.json     the ranked board: 200 rows, watchlist covered
 //   data.js        the same board in the shape dashboard/ reads
 //   dashboard/     a copy of this repo's static dashboard (no network)
-//   screenshots/   a copy of this repo's three screenshots
+//   screenshots/   a copy of this repo's screenshots
 //   dossier.json   buildDossier() over that output, byte for byte
 //
 // Node 22, standard library only, no install and no build step. The run is
@@ -16,7 +16,7 @@
 // only moves data between the snapshot, the model and the output directory.
 //
 // Local run (the grader mounts the snapshot at /input and takes /output):
-//   MAKEFUN_OUTPUT_DIR=out node main.ts --input ../input/snapshot.json
+//   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts --input ../input/snapshot.json
 //   node main.ts --help
 
 import {
@@ -44,7 +44,7 @@ const DASH_LIMIT = { max_files: 400, max_bytes: 4_194_304 };
 const SHOT_NAME = /^[A-Za-z0-9_][A-Za-z0-9._-]{0,127}$/;
 
 const USAGE = [
-  'token-radar-01: rank pre-token DeFi protocols by expected launch value.',
+  'token-radar-01: rank pre-token DeFi protocols by expected launch value (radar-3).',
   '',
   'Usage: node main.ts [--input <snapshot.json|directory>] [--output <dir>]',
   '       node main.ts --help',
